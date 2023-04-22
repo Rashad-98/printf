@@ -5,5 +5,5 @@
 #include <stdarg.h>
 
 int _printf(char *format, ...);
-void pformatted(char *format, va_list ap, char *buffer, int *cursor);
+int pformatted(char *format, va_list ap, char *buffer, int *cursor);
 #endif

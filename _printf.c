@@ -28,7 +28,7 @@ int _printf(char *format, ...)
 			{
 				/**
 				 * the next line should be added after definning pformatted
-				 * pformatted((format + i + 1), ap, buffer, &cursor);
+				 * i += pformatted((format + i + 1), ap, buffer, &cursor) + 1;
 				 */
 			}
 		}
