@@ -6,28 +6,30 @@
  * @ap: va_list type that holds arguments from _printf
  * @buffer: pointer to buffer
  * @cursor: pointer to index in buffer
- * 
- * Return: number of charcters in the format string after 
+ *
+ * Return: number of charcters in the format string after
  * the modulo operator
  */
 int pformatted(char *format, va_list ap, char *buffer, int *cursor)
 {
-	specifier arr[16] = {
-		{c, pchar},
-		{d, pdecimal},
-		{i, pdecimal},
-		{'', NULL},
-		{'', NULL},
-		{'', NULL},
-		{'', NULL},
-		{'', NULL},
-		{'', NULL},
-		{'', NULL},
-		{'', NULL},
-		{'', NULL},
-		{'', NULL},
-		{'', NULL},
-		{'', NULL}
-		{'', NULL}
+	int i, j;
+	int nchar = 0;
+	specifier arr[1] = {
+		{'c', pchar}
+	};
+
+	for (i = 0; *(format + i) != '\0'; i++)
+	{
+		for (j = 0; j < 16; j++)
+		{
+			if (*(format + i) == arr[j].sp)
+			{
+				nchar = i;
+				arr[j].f(format, ap, buffer, cursor);
+				return (nchar);
+			}
+		}
 	}
+
+	return (nchar);
 }

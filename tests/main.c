@@ -1,6 +1,6 @@
 #include <limits.h>
 #include <stdio.h>
-#include "main.h"
+#include "../main.h"
 
 /**
  * main - Entry point
@@ -9,8 +9,9 @@
  */
 int main(void)
 {
-	_printf("Let's try to printf a simple sentence.\n");
-	printf("Let's try to printf a simple sentence. \n");
+	char x = 'x';
+
+	_printf("dsf%c\n", x);
 
 	return (0);
 }

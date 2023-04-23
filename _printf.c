@@ -26,10 +26,7 @@ int _printf(char *format, ...)
 			}
 			else
 			{
-				/**
-				 * the next line should be added after definning pformatted
-				 * i += pformatted((format + i + 1), ap, buffer, &cursor) + 1;
-				 */
+				i += pformatted((format + i + 1), ap, buffer, &cursor) + 1;
 			}
 		}
 		else
