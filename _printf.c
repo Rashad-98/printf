@@ -23,6 +23,7 @@ int _printf(char *format, ...)
 			{
 				buffer[cursor] = '%';
 				cursor++;
+				i++;
 			}
 			else
 			{
