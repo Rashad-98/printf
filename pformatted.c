@@ -10,26 +10,37 @@
  * Return: number of charcters in the format string after
  * the modulo operator
  */
-int pformatted(char *format, va_list ap, char *buffer, int *cursor)
+int pformatted(const char *format, va_list ap, char *buffer, int *cursor)
 {
 	int i, j;
 	int nchar = 0;
-	specifier arr[1] = {
-		{'c', pchar}
+	specifier arr[4] = {
+		{'c', pchar},
+		{'s', pstring},
+		{'d', pdecimal},
+		{'i', pdecimal}
 	};
 
 	for (i = 0; *(format + i) != '\0'; i++)
 	{
-		for (j = 0; j < 16; j++)
+		for (j = 0; j < 4; j++)
 		{
 			if (*(format + i) == arr[j].sp)
 			{
-				nchar = i;
-				arr[j].f(format, ap, buffer, cursor);
-				return (nchar);
+				if (is_valid(format, i))
+				{
+					nchar = i;
+					arr[j].f(format, ap, buffer, cursor);
+					return (nchar);
+				}
+				*(buffer + *cursor) = '%';
+				(*cursor)++;
+				return (-1);
 			}
 		}
 	}
 
-	return (nchar);
+	*(buffer + *cursor) = '%';
+	(*cursor)++;
+	return (-1);
 }

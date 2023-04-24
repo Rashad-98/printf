@@ -6,7 +6,7 @@
  *
  * Return: number of printed characters
  */
-int _printf(char *format, ...)
+int _printf(const char *format, ...)
 {
 	va_list ap;
 	char buffer[1024];
@@ -36,6 +36,7 @@ int _printf(char *format, ...)
 			cursor++;
 		}
 	}
+	buffer[cursor] = '\0';
 
 	write(1, buffer, cursor);
 
